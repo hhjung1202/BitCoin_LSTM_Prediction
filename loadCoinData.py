@@ -1,29 +1,16 @@
-#!/usr/bin/python2
+# version - python 2 
 
 import UpbitAPI
-import sys
-from re import compile
-import operator
-from time import sleep
 import numpy as np
-import time
-import base64
-import datetime
 import math
 
 class Calculate:
 
-	def __init__(self, api, target_coin, krw_unit):
+	def __init__(self, api, target_coin):
 
 		self.api = api
 		self.target_coin = target_coin
 		
-		# self.Current_top_RSI = 0
-
-		self.now_RSI = 0
-		self.prev_RSI = 0
-		self.global_coin_asset = {}
-
 		self.rsi_min = []
 		self.rsi_15 = []
 		
@@ -31,41 +18,9 @@ class Calculate:
 		self.data_15 = []
 
 		self.data = api.getChart_min('KRW-BTC')
-		# self.extendable_data()
-
-		self.max_money = 100000
-
-		self.now_price = 0
-		self.prev_price = 0
-
-		self.already_buy_flag = 0 # 0 - nope, 1 - ====, 2 - up, 3- down
-		self.basic_bought_set = []
-
-		self.Unit_KRW = krw_unit
 
 		self.ma = []
 		self.boll = []
-		self.upperband = 0
-		self.lowerband = 0
-		self.upper_boundary = 0
-		self.lower_boundary = 0
-		self.second_lower_boundary = 0
-
-		self.upway_Flag = 0
-
-		self.prev_time = ''
-		self.changed_index = -1
-
-		self.basic_worst_price = 0
-		self.basic_flag = 0
-		self.basic_percent = 0
-
-
-
-	
-	def printTime(self, title):
-		now = datetime.datetime.now()
-		print title, now
 
 	def extendable_data(self):
 		
@@ -201,19 +156,8 @@ class Calculate:
 
 if __name__ == '__main__':
 
-
-
-	access_key = ';'
-
-	secret_key = 'a'
-
-
-	api = UpbitAPI.UpbitAPI(access_key, secret_key)
-
-	target_coin = ''
-
+	api = UpbitAPI.UpbitAPI()
 
 	target_coin = "BTC"
-	unit_krw = 2000
-	Calc_Class = Calculate(api, target_coin, unit_krw)
+	Calc_Class = Calculate(api, target_coin)
 	Calc_Class.start()
