@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from config import cfg
 import csv
+import os
 
 tf.set_random_seed(777)  # reproducibility
 
@@ -89,16 +90,21 @@ class Learning:
 			sess.run(init)
 			self.savor = tf.train.Saver()
 			# Training step
-			ckpt_state = tf.train.get_checkpoint_state("saved")
-			# Training step
-			point = ckpt_state.model_checkpoint_path
-			self.savor.restore(sess, point)
-			# for i in range(self.iterations):
-			# 	_, step_loss = sess.run([self.train, self.Euclidian_loss], feed_dict={
-			# 		self.X: self.trainX, self.Y: self.trainY})
-			# 	print("[step: {}] loss: {}".format(i, step_loss))
-			# 	if i % 100 == 0:
-			# 		self.savor.save(sess, 'saved/test_model', global_step=i)
+			if not os.path.exists(cfg.save_dir):
+				os.mkdir(cfg.save_dir)
+			else:
+				if cfg.is_loading:
+					ckpt_state = tf.train.get_checkpoint_state("saved")
+					# Training step
+					point = ckpt_state.all_model_checkpoint_paths[-1]
+					self.savor.restore(sess, point)
+			
+			for i in range(self.iterations):
+				_, step_loss = sess.run([self.train, self.Euclidian_loss], feed_dict={
+					self.X: self.trainX, self.Y: self.trainY})
+				print("[step: {}] loss: {}".format(i, step_loss))
+				if i % 100 == 0:
+					self.savor.save(sess, 'saved/test_model', global_step=i) # max_to_keep=None
 
 			# Test step
 			test_predict = sess.run(self.Y_pred, feed_dict={self.X: self.testX})

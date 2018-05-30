@@ -9,7 +9,10 @@ $ pip install requests websocket-client PyJWT numpy
 $ python loadCoinData.py
 ``` 
 
-**Step 2.** Loading Data
+**Step 3.** Edit Excel Data
+Delete Label, Time Data *like data_revise.csv*
+
+**Step 3.** Predict BitCoin Price
 in python3
 
 ```

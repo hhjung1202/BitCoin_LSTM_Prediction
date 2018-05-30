@@ -32,7 +32,8 @@ flags.DEFINE_integer('iterations', 10000, 'iterations')
 # flags.DEFINE_integer('val_sum_freq', 500, 'the frequency of saving valuation summary(step)')
 # flags.DEFINE_integer('save_freq', 3, 'the frequency of saving model(epoch)')
 # flags.DEFINE_string('results', 'results', 'path for saving results')
-
+flags.DEFINE_string('save_dir', 'saved', 'path for saving results')
+flags.DEFINE_boolean('is_loading', False, 'load pre-trained weights')
 # Ours
 
 ############################
