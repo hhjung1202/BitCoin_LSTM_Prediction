@@ -25,6 +25,7 @@ class Learning:
 		self.textY= []
 		self.Y_pred=[]
 		self.lstm_output = []
+
 	def DataLoading(self):
 		data = []
 		with open('data_revise.csv', newline="") as csvfile:
@@ -68,6 +69,39 @@ class Learning:
     	self.loss = tf.reduce_sum(tf.square(Y_pred - Y))  # sum of the squares
 		self.optimizer = tf.trian
 	def run(self):
+		self.DataLoading()
+		self.build_arch()
+		self.loss()
+
+		with tf.Session() as sess:
+			init = tf.global_variables_initializer()
+			sess.run(init)
+
+			# Training step
+			for i in range(self.iterations):
+				_, step_loss = sess.run([self.train, self.loss], feed_dict={
+										X: self.trainX, Y: self.trainY})
+				print("[step: {}] loss: {}". format(i, step_loss))
+
+			# Test step
+			test_predict = sess.run(self.Y_pred, feed_dict={X: self.testX})
+			rmse_val = sess.run(self.rmse, feed_dict={
+							targets: self.testY, predictions: test_predict})
+			print("RMSE: {}".format(rmse_val))
+
+			# Plot predictions
+			print(self.testY)
+			print(test_predict)
+			plt.plot(self.testY , label= 'actual' )
+			plt.plot(test_predict, label = 'predict')
+			plt.xlabel("Time Period")
+			plt.ylabel("Stock Price")
+			plt.show()
+
+
+if __name__ == "__main__":
+	base_Learning = Learning()
+	base_Learning.run()
 
 # build a dataset
 
