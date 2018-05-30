@@ -87,12 +87,18 @@ class Learning:
 		with tf.Session() as sess:
 			init = tf.global_variables_initializer()
 			sess.run(init)
-
+			self.savor = tf.train.Saver()
 			# Training step
-			for i in range(self.iterations):
-				_, step_loss = sess.run([self.train, self.Euclidian_loss], feed_dict={
-					self.X: self.trainX, self.Y: self.trainY})
-				print("[step: {}] loss: {}".format(i, step_loss))
+			ckpt_state = tf.train.get_checkpoint_state("saved")
+			# Training step
+			point = ckpt_state.model_checkpoint_path
+			self.savor.restore(sess, point)
+			# for i in range(self.iterations):
+			# 	_, step_loss = sess.run([self.train, self.Euclidian_loss], feed_dict={
+			# 		self.X: self.trainX, self.Y: self.trainY})
+			# 	print("[step: {}] loss: {}".format(i, step_loss))
+			# 	if i % 100 == 0:
+			# 		self.savor.save(sess, 'saved/test_model', global_step=i)
 
 			# Test step
 			test_predict = sess.run(self.Y_pred, feed_dict={self.X: self.testX})
