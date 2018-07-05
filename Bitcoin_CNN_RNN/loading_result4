@@ -1,0 +1,123 @@
+arr_conv = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope="")
+new_added_layer = ['conv_a1','conv_a2']
+reuse_vars_dict = dict([(var.op.name, var) for var in arr_conv 
+                    if (new_added_layer[0] not in var.op.name) and (new_added_layer[1] not in var.op.name) ])
+
+for i in reuse_vars_dict:
+    print(i)
+    print(reuse_vars_dict[i])
+
+
+
+Conv_layer/conv1/kernel
+<tf.Variable 'Conv_layer/conv1/kernel:0' shape=(3, 3, 1, 64) dtype=float32_ref>
+Conv_layer/conv1/bias
+<tf.Variable 'Conv_layer/conv1/bias:0' shape=(64,) dtype=float32_ref>
+Conv_layer/conv2/kernel
+<tf.Variable 'Conv_layer/conv2/kernel:0' shape=(3, 3, 64, 256) dtype=float32_ref>
+Conv_layer/conv2/bias
+<tf.Variable 'Conv_layer/conv2/bias:0' shape=(256,) dtype=float32_ref>
+Conv_layer/conv3/kernel
+<tf.Variable 'Conv_layer/conv3/kernel:0' shape=(3, 3, 256, 16) dtype=float32_ref>
+Conv_layer/conv3/bias
+<tf.Variable 'Conv_layer/conv3/bias:0' shape=(16,) dtype=float32_ref>
+Conv_layer/conv4/kernel
+<tf.Variable 'Conv_layer/conv4/kernel:0' shape=(1, 1, 16, 1) dtype=float32_ref>
+Conv_layer/conv4/bias
+<tf.Variable 'Conv_layer/conv4/bias:0' shape=(1,) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel:0' shape=(19, 64) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias:0' shape=(64,) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel:0' shape=(32, 64) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias:0' shape=(64,) dtype=float32_ref>
+FullyConnected_layer/fully_connected/weights
+<tf.Variable 'FullyConnected_layer/fully_connected/weights:0' shape=(16, 8) dtype=float32_ref>
+FullyConnected_layer/fully_connected/biases
+<tf.Variable 'FullyConnected_layer/fully_connected/biases:0' shape=(8,) dtype=float32_ref>
+FullyConnected_layer/fully_connected_1/weights
+<tf.Variable 'FullyConnected_layer/fully_connected_1/weights:0' shape=(8, 5) dtype=float32_ref>
+FullyConnected_layer/fully_connected_1/biases
+<tf.Variable 'FullyConnected_layer/fully_connected_1/biases:0' shape=(5,) dtype=float32_ref>
+FullyConnected_layer/fully_connected_2/weights
+<tf.Variable 'FullyConnected_layer/fully_connected_2/weights:0' shape=(5, 1) dtype=float32_ref>
+FullyConnected_layer/fully_connected_2/biases
+<tf.Variable 'FullyConnected_layer/fully_connected_2/biases:0' shape=(1,) dtype=float32_ref>
+beta1_power
+<tf.Variable 'beta1_power:0' shape=() dtype=float32_ref>
+beta2_power
+<tf.Variable 'beta2_power:0' shape=() dtype=float32_ref>
+Conv_layer/conv1/kernel/Adam
+<tf.Variable 'Conv_layer/conv1/kernel/Adam:0' shape=(3, 3, 1, 64) dtype=float32_ref>
+Conv_layer/conv1/kernel/Adam_1
+<tf.Variable 'Conv_layer/conv1/kernel/Adam_1:0' shape=(3, 3, 1, 64) dtype=float32_ref>
+Conv_layer/conv1/bias/Adam
+<tf.Variable 'Conv_layer/conv1/bias/Adam:0' shape=(64,) dtype=float32_ref>
+Conv_layer/conv1/bias/Adam_1
+<tf.Variable 'Conv_layer/conv1/bias/Adam_1:0' shape=(64,) dtype=float32_ref>
+Conv_layer/conv2/kernel/Adam
+<tf.Variable 'Conv_layer/conv2/kernel/Adam:0' shape=(3, 3, 64, 256) dtype=float32_ref>
+Conv_layer/conv2/kernel/Adam_1
+<tf.Variable 'Conv_layer/conv2/kernel/Adam_1:0' shape=(3, 3, 64, 256) dtype=float32_ref>
+Conv_layer/conv2/bias/Adam
+<tf.Variable 'Conv_layer/conv2/bias/Adam:0' shape=(256,) dtype=float32_ref>
+Conv_layer/conv2/bias/Adam_1
+<tf.Variable 'Conv_layer/conv2/bias/Adam_1:0' shape=(256,) dtype=float32_ref>
+Conv_layer/conv3/kernel/Adam
+<tf.Variable 'Conv_layer/conv3/kernel/Adam:0' shape=(3, 3, 256, 16) dtype=float32_ref>
+Conv_layer/conv3/kernel/Adam_1
+<tf.Variable 'Conv_layer/conv3/kernel/Adam_1:0' shape=(3, 3, 256, 16) dtype=float32_ref>
+Conv_layer/conv3/bias/Adam
+<tf.Variable 'Conv_layer/conv3/bias/Adam:0' shape=(16,) dtype=float32_ref>
+Conv_layer/conv3/bias/Adam_1
+<tf.Variable 'Conv_layer/conv3/bias/Adam_1:0' shape=(16,) dtype=float32_ref>
+Conv_layer/conv4/kernel/Adam
+<tf.Variable 'Conv_layer/conv4/kernel/Adam:0' shape=(1, 1, 16, 1) dtype=float32_ref>
+Conv_layer/conv4/kernel/Adam_1
+<tf.Variable 'Conv_layer/conv4/kernel/Adam_1:0' shape=(1, 1, 16, 1) dtype=float32_ref>
+Conv_layer/conv4/bias/Adam
+<tf.Variable 'Conv_layer/conv4/bias/Adam:0' shape=(1,) dtype=float32_ref>
+Conv_layer/conv4/bias/Adam_1
+<tf.Variable 'Conv_layer/conv4/bias/Adam_1:0' shape=(1,) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel/Adam
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel/Adam:0' shape=(19, 64) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel/Adam_1
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel/Adam_1:0' shape=(19, 64) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias/Adam
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias/Adam:0' shape=(64,) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias/Adam_1
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias/Adam_1:0' shape=(64,) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel/Adam
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel/Adam:0' shape=(32, 64) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel/Adam_1
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel/Adam_1:0' shape=(32, 64) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias/Adam
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias/Adam:0' shape=(64,) dtype=float32_ref>
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias/Adam_1
+<tf.Variable 'RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias/Adam_1:0' shape=(64,) dtype=float32_ref>
+FullyConnected_layer/fully_connected/weights/Adam
+<tf.Variable 'FullyConnected_layer/fully_connected/weights/Adam:0' shape=(16, 8) dtype=float32_ref>
+FullyConnected_layer/fully_connected/weights/Adam_1
+<tf.Variable 'FullyConnected_layer/fully_connected/weights/Adam_1:0' shape=(16, 8) dtype=float32_ref>
+FullyConnected_layer/fully_connected/biases/Adam
+<tf.Variable 'FullyConnected_layer/fully_connected/biases/Adam:0' shape=(8,) dtype=float32_ref>
+FullyConnected_layer/fully_connected/biases/Adam_1
+<tf.Variable 'FullyConnected_layer/fully_connected/biases/Adam_1:0' shape=(8,) dtype=float32_ref>
+FullyConnected_layer/fully_connected_1/weights/Adam
+<tf.Variable 'FullyConnected_layer/fully_connected_1/weights/Adam:0' shape=(8, 5) dtype=float32_ref>
+FullyConnected_layer/fully_connected_1/weights/Adam_1
+<tf.Variable 'FullyConnected_layer/fully_connected_1/weights/Adam_1:0' shape=(8, 5) dtype=float32_ref>
+FullyConnected_layer/fully_connected_1/biases/Adam
+<tf.Variable 'FullyConnected_layer/fully_connected_1/biases/Adam:0' shape=(5,) dtype=float32_ref>
+FullyConnected_layer/fully_connected_1/biases/Adam_1
+<tf.Variable 'FullyConnected_layer/fully_connected_1/biases/Adam_1:0' shape=(5,) dtype=float32_ref>
+FullyConnected_layer/fully_connected_2/weights/Adam
+<tf.Variable 'FullyConnected_layer/fully_connected_2/weights/Adam:0' shape=(5, 1) dtype=float32_ref>
+FullyConnected_layer/fully_connected_2/weights/Adam_1
+<tf.Variable 'FullyConnected_layer/fully_connected_2/weights/Adam_1:0' shape=(5, 1) dtype=float32_ref>
+FullyConnected_layer/fully_connected_2/biases/Adam
+<tf.Variable 'FullyConnected_layer/fully_connected_2/biases/Adam:0' shape=(1,) dtype=float32_ref>
+FullyConnected_layer/fully_connected_2/biases/Adam_1
+<tf.Variable 'FullyConnected_layer/fully_connected_2/biases/Adam_1:0' shape=(1,) dtype=float32_ref>

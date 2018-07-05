@@ -1,0 +1,66 @@
+arr_conv = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope="")
+new_added_layer = ['conv_a1','conv_a2']
+reuse_vars_dict = dict([(var.op.name, var) for var in arr_conv 
+                    if (new_added_layer[0] not in var.op.name) and (new_added_layer[1] not in var.op.name) ])
+
+for i in reuse_vars_dict:
+    print(i)
+
+
+
+Conv_layer/conv1/kernel
+Conv_layer/conv1/bias
+Conv_layer/conv2/kernel
+Conv_layer/conv2/bias
+Conv_layer/conv3/kernel
+Conv_layer/conv3/bias
+Conv_layer/conv4/kernel
+Conv_layer/conv4/bias
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias
+FullyConnected_layer/fully_connected/weights
+FullyConnected_layer/fully_connected/biases
+FullyConnected_layer/fully_connected_1/weights
+FullyConnected_layer/fully_connected_1/biases
+FullyConnected_layer/fully_connected_2/weights
+FullyConnected_layer/fully_connected_2/biases
+beta1_power
+beta2_power
+Conv_layer/conv1/kernel/Adam
+Conv_layer/conv1/kernel/Adam_1
+Conv_layer/conv1/bias/Adam
+Conv_layer/conv1/bias/Adam_1
+Conv_layer/conv2/kernel/Adam
+Conv_layer/conv2/kernel/Adam_1
+Conv_layer/conv2/bias/Adam
+Conv_layer/conv2/bias/Adam_1
+Conv_layer/conv3/kernel/Adam
+Conv_layer/conv3/kernel/Adam_1
+Conv_layer/conv3/bias/Adam
+Conv_layer/conv3/bias/Adam_1
+Conv_layer/conv4/kernel/Adam
+Conv_layer/conv4/kernel/Adam_1
+Conv_layer/conv4/bias/Adam
+Conv_layer/conv4/bias/Adam_1
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel/Adam
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/kernel/Adam_1
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias/Adam
+RNN_layer/rnn/multi_rnn_cell/cell_0/lstm_cell/bias/Adam_1
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel/Adam
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/kernel/Adam_1
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias/Adam
+RNN_layer/rnn/multi_rnn_cell/cell_1/lstm_cell/bias/Adam_1
+FullyConnected_layer/fully_connected/weights/Adam
+FullyConnected_layer/fully_connected/weights/Adam_1
+FullyConnected_layer/fully_connected/biases/Adam
+FullyConnected_layer/fully_connected/biases/Adam_1
+FullyConnected_layer/fully_connected_1/weights/Adam
+FullyConnected_layer/fully_connected_1/weights/Adam_1
+FullyConnected_layer/fully_connected_1/biases/Adam
+FullyConnected_layer/fully_connected_1/biases/Adam_1
+FullyConnected_layer/fully_connected_2/weights/Adam
+FullyConnected_layer/fully_connected_2/weights/Adam_1
+FullyConnected_layer/fully_connected_2/biases/Adam
+FullyConnected_layer/fully_connected_2/biases/Adam_1
