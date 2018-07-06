@@ -5,10 +5,7 @@ import csv
 
 tf.set_random_seed(777)  # reproducibility
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 18766866f9214638b972bb9df5e168d710a99053
 class Learning:
     def __init__(self):
         # AccPrice AccVolume open low high close ma boll rsi
@@ -17,7 +14,7 @@ class Learning:
         self.hidden_dim = 10
         self.output_dim = 1
         self.learning_rate = 0.001
-        self.epoch_num = 3000
+        self.epoch_num = 10000
         self.num_stacked_layers = 2
 
         self.trainX = []
@@ -36,7 +33,7 @@ class Learning:
 
     def DataLoading(self):
         data = []
-        with open('data_revise.csv', newline="") as csvfile:
+        with open('./data_revise.csv', newline="") as csvfile:
             spam = csv.reader(csvfile)
             for row in spam:
                 row = [float(i) for i in row]
@@ -51,7 +48,6 @@ class Learning:
         for i in range(0, len(y) - self.seq_length):
             _x = x[i:i + self.seq_length]
             _y = y[i + 5]  # Next close price
-            print(_x, "->", _y)
             dataX.append(_x)
             dataY.append(_y)
 
@@ -74,14 +70,14 @@ class Learning:
 
     def lstm_cell(self):
         cell = tf.contrib.rnn.BasicLSTMCell(num_units=self.hidden_dim, state_is_tuple=True)
-        # cell = tf.contrib.rnn.GRUCell(num_units=self.hidden_dim)
+#         cell = tf.contrib.rnn.GRUCell(num_units=self.hidden_dim)
         return cell
 
     def build_arch(self):
         stackedRNNs = [self.lstm_cell() for _ in range(self.num_stacked_layers)]
         multi_cells = tf.contrib.rnn.MultiRNNCell(stackedRNNs, state_is_tuple=True) if self.num_stacked_layers > 1 else self.lstm_cell()
         self.lstm_output, _states = tf.nn.dynamic_rnn(multi_cells, self.X, dtype=tf.float32)
-        self.Y_pred = tf.contrib.layers.fully_connected(self.lstm_output[:, self.output_dim], self.output_dim, activation_fn=None)
+        self.Y_pred = tf.contrib.layers.fully_connected(self.lstm_output[:, self.lstm_output.shape[1]-1], self.output_dim, activation_fn=None)
 
     def loss(self):
         self.Euclidian_loss = tf.reduce_sum(tf.square(self.Y_pred - self.Y))  # sum of the squares
@@ -102,16 +98,16 @@ class Learning:
         with tf.Session() as sess:
             init = tf.global_variables_initializer()
             sess.run(init)
-            self.savor = tf.train.Saver()
+            # self.savor = tf.train.Saver()
 
-            ckpt_state = tf.train.get_checkpoint_state("saved")
+            # ckpt_state = tf.train.get_checkpoint_state("saved")
             # Training step
-            ckpt_state.model_checkpoint_path
+            # ckpt_state.model_checkpoint_path
             for epoch in range(self.epoch_num):
                 _, step_loss = sess.run([self.train, self.Euclidian_loss], feed_dict={self.X: self.trainX, self.Y: self.trainY})
                 # print("[step: {}] loss: {}".format(i, step_loss))
                 if ((epoch + 1) % 100 == 0) or (epoch == self.epoch_num - 1):  # every 100 step or last step
-                    self.savor.save(sess, 'saved/test_model', global_step=100)
+                    # self.savor.save(sess, 'saved/test_model', global_step=100)
                     # get RMSE with train data
                     train_predict = sess.run(self.Y_pred, feed_dict={self.X: self.trainX})
                     train_error = sess.run(self.rmse, feed_dict={self.targets: self.trainY, self.predictions: train_predict})
