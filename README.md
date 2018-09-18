@@ -17,5 +17,5 @@ in python3
 
 ```
 $ pip install tensorflow matplotlib numpy
-$ python bitCoin_Predict.py
+$ python revise_v3.py
 ```
