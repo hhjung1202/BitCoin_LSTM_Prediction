@@ -17,5 +17,5 @@ in python3
 
 ```
 $ pip install tensorflow matplotlib numpy
-$ python revise_v3.py
+$ python ./Bitcoin_CNN_RNN/main_code3.py
 ```
