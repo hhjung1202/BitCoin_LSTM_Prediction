@@ -2,15 +2,11 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
-<<<<<<< HEAD
-=======
 from tensorflow.python.ops import variable_scope as vs
->>>>>>> 18766866f9214638b972bb9df5e168d710a99053
 
 tf.set_random_seed(777)  # reproducibility
 
 class Learning:
-<<<<<<< HEAD
 	def __init__(self):
 		# AccPrice AccVolume open low high close ma boll rsi
 		self.seq_length = 9
@@ -172,7 +168,6 @@ if __name__ == "__main__":
 	base_Learning = Learning()
 	base_Learning.run()
 
-=======
     def __init__(self):
         # AccPrice AccVolume open low high close ma boll rsi
         self.seq_length = 9
@@ -331,4 +326,3 @@ if __name__ == "__main__":
 if __name__ == "__main__":
     base_Learning = Learning()
     base_Learning.run()
->>>>>>> 18766866f9214638b972bb9df5e168d710a99053
